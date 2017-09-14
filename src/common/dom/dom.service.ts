@@ -1,7 +1,6 @@
 import {Renderer2, ElementRef} from '@angular/core';
 
 export class DomService {
-
 	constructor(private renderer: Renderer2, private elementRef: ElementRef) {
 	}
 
@@ -17,4 +16,11 @@ export class DomService {
 		let nativeElement = this.elementRef.nativeElement;
 		return this.renderer.selectRootElement(selector);
 	}
+
+	removeElement(el: HTMLElement): void {
+		if (el && el.parentNode) {
+			el.parentNode.removeChild(el);
+		}
+	}
+
 }

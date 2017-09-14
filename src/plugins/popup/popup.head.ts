@@ -1,8 +1,7 @@
 import {Component, Input, ElementRef, OnInit, OnDestroy, ViewContainerRef} from '@angular/core';
-import {TemplateLink} from '';
 import {EventListener} from 'ng2-qgrid/core/infrastructure/event.listener';
 import {EventManager} from 'ng2-qgrid/core/infrastructure/event.manager';
-import {PopupService} from 'ng2-qgrid/plugins/popup/popup.service';
+import {PopupService} from './popup.service';
 import {TemplateCacheService, TemplateLinkService} from 'ng2-qgrid/template';
 import {NgComponent} from 'ng2-qgrid/infrastructure/component';
 
@@ -21,7 +20,6 @@ export class PopupHeadComponent extends NgComponent {
 		x: 0,
 		y: 0
 	};
-	private template;
 
 	constructor(private qGridPopupService: PopupService,
 					private element: ElementRef,
@@ -30,7 +28,6 @@ export class PopupHeadComponent extends NgComponent {
 					private templateCache: TemplateCacheService) {
 		super();
 
-		this.template = new TemplateLink();
 		this.eventListener = new EventListener(this.element.nativeElement[0], new EventManager(this));
 
 		this.element = this.element.nativeElement.setAttribute('draggable', true);

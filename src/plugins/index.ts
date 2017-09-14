@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {PagerModule} from './pagination';
 import {ProgressModule} from './progress';
+import {PopupModule} from './popup';
 
 // export * from './plugin.module';
 // export * from './plugin.component';
@@ -15,14 +16,14 @@ import {ProgressModule} from './progress';
 	exports: [
 		PagerModule,
 		ProgressModule,
-		// PopupModule,
+		PopupModule,
 		// SortBarModule
 		// ExportModule
 	],
 	imports: [
 		PagerModule,
 		ProgressModule,
-		// PopupModule,
+		PopupModule,
 		// SortBarModule
 	],
 	providers: []

@@ -1,4 +1,4 @@
-import TemplateLink from 'ng2-qgrid/view/components/template/template.link';
+// import {TemplateLink} from 'ng2-qgrid/view/components/template/template.link';
 import {PopupService} from 'ng2-qgrid/plugins/popup/popup.service';
 import {Component, ElementRef, Input, OnDestroy, OnInit, ViewContainerRef} from '@angular/core';
 import {TemplateCacheService, TemplateLinkService} from 'ng2-qgrid/template';
@@ -12,14 +12,11 @@ export class PopupPanelComponent implements OnInit, OnDestroy {
 	@Input() model;
 	@Input() id;
 
-	private template;
-
 	constructor(private qGridPopupService: PopupService,
 					private element: ElementRef,
 					private viewContainerRef: ViewContainerRef,
 					private templateLink: TemplateLinkService,
 					private templateCache: TemplateCacheService) {
-		this.template = new TemplateLink();
 	}
 
 	ngOnInit(): void {
