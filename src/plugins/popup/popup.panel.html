@@ -1,4 +1,4 @@
-<q-grid-box model="$popup.model" class="q-grid-popup-panel">
-	<q-grid-popup-head model="$popup.model" id="$popup.head.id"></q-grid-popup-head>
-	<q-grid-popup-body model="$popup.model" id="$popup.body.id"></q-grid-popup-body>
+<q-grid-box class="q-grid-popup-panel" popup-panel>
+	<ng-content select="q-grid-popup-head"></ng-content>
+	<ng-content select="q-grid-popup-body"></ng-content>
 </q-grid-box>

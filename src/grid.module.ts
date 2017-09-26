@@ -9,6 +9,12 @@ import {GridService} from './main/grid/grid.service';
 import {GridComponent} from './main/grid/grid.component';
 import {ColumnListComponent, ColumnComponent} from './main/column';
 
+import {ColumnChooserModel} from 'ng2-qgrid/plugins';
+import {PopupModel} from 'ng2-qgrid/plugins';
+// import {PopupTriggerComponent} from 'ng2-qgrid/plugins';
+// import {PopupModule} from 'ng2-qgrid/plugins';
+// import {PluginModule} from 'ng2-qgrid/plugins';
+
 @NgModule({
 	declarations: [],
 	exports: [
@@ -17,11 +23,16 @@ import {ColumnListComponent, ColumnComponent} from './main/column';
 		ColumnComponent,
 		TemplateCacheDirective,
 		MainModule,
-		TemplateModule
+		TemplateModule,
+		// PluginModule,
+		// PopupModule,
+		// PopupTriggerComponent
 	],
 	imports: [
 		MainModule,
-		TemplateModule
+		TemplateModule,
+		// PluginModule,
+		// PopupModule,
 	],
 	providers: [
 		GridService,
@@ -31,7 +42,15 @@ import {ColumnListComponent, ColumnComponent} from './main/column';
 })
 export class GridModule {
 	constructor(themeService: ThemeService, theme: Theme) {
-		setup(Model);
+		let model = setup(Model);
+		this.setupPlugins(model);
 		themeService.name = theme.name;
+	}
+
+	private setupPlugins(model: any) {
+		model
+			.register('columnChooser', ColumnChooserModel)
+			// .register('columnFilter', ColumnFilterModel)
+			.register('popup', PopupModel);
 	}
 }

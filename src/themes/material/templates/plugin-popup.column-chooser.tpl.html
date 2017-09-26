@@ -1,0 +1,18 @@
+<ng-template key="column-chooser-popup.tpl" let-$popup>
+	<q-grid-popup-trigger>
+              <button md-button (click)="$popup.open({width: 352, height: 652})" class="md-icon-button"
+                        tabindex="-1">
+                  <md-icon>more_vert</md-icon>
+              </button>
+	</q-grid-popup-trigger>
+<!--	<q-grid-popup-panel [model]="$popup.model" [id]="$popup.id">
+		<q-grid-popup-head [model]="model" id="$popup.headId">
+			<span class="md-subhead">Column Chooser</span>
+		</q-grid-popup-head>
+		<q-grid-popup-body [model]="model" id="$popup.bodyId">
+			<q-grid-column-chooser (submit)="$popupBody.close()"
+										  (cancel)="$popupBody.close()">
+			</q-grid-column-chooser>
+		</q-grid-popup-body>
+	</q-grid-popup-panel>-->
+</ng-template>

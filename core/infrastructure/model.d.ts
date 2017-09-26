@@ -30,6 +30,7 @@ import {ExportModel} from '../export/export.model';
 import {ActionModel} from '../action/action.model';
 import {FetchModel} from '../fetch/fetch.model';
 import {Event} from './event';
+import {PopupModel, PopupModule} from "ng2-qgrid/plugins";
 
 export declare class Model {
 	constructor();
@@ -123,6 +124,11 @@ export declare class Model {
 	progress(value?: object, tag?: object): ProgressModel;
 
 	progressChanged: Event;
+
+	popup(value?: object, tag?: object): PopupModel;
+
+	popupChanged: Event;
+
 
 	highlight(value?: object, tag?: object): HighlightModel;
 

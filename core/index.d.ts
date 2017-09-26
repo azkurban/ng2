@@ -1,3 +1,3 @@
 import {Model} from '../infrastructure/model';
 
-declare function setup(model: Model);
+declare function setup(model: Model): Model;

@@ -31,6 +31,7 @@ import {ImportModel} from './import';
 import {ActionModel} from './action';
 import {FetchModel} from './fetch';
 
+
 export function setup(model) {
 	model.register('grid', GridModel)
 		.register('scene', SceneModel)
@@ -64,4 +65,5 @@ export function setup(model) {
 		.register('import', ImportModel)
 		.register('action', ActionModel)
 		.register('fetch', FetchModel);
+	return model;
 }

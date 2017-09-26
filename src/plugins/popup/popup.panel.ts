@@ -5,14 +5,14 @@ import {TemplateCacheService, TemplateLinkService} from 'ng2-qgrid/template';
 
 @Component({
 	selector: 'q-grid-popup-panel',
-	template: '<div></div>'
+	templateUrl: './popup.panel.html'
 })
 
 export class PopupPanelComponent implements OnInit, OnDestroy {
 	@Input() model;
 	@Input() id;
 
-	constructor(private qGridPopupService: PopupService,
+	constructor(private popupService: PopupService,
 					private element: ElementRef,
 					private viewContainerRef: ViewContainerRef,
 					private templateLink: TemplateLinkService,
@@ -41,6 +41,6 @@ export class PopupPanelComponent implements OnInit, OnDestroy {
 	}
 
 	close(): void {
-		this.qGridPopupService.close(this.id);
+		this.popupService.close(this.id);
 	}
 }

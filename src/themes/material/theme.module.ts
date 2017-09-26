@@ -8,6 +8,7 @@ import {ChipListComponent} from './components/chip-list/chip-list.component';
 import {PluginModule} from 'ng2-qgrid/plugins';
 import {TemplateModule} from 'ng2-qgrid/template';
 import {CommonModule} from 'ng2-qgrid/common';
+import {ColumnChooserModule} from 'ng2-qgrid/plugins/colum-chooser';
 
 import {
 	MdIconModule,
@@ -39,6 +40,7 @@ import {
 		FormsModule,
 		TemplateModule,
 		PluginModule,
+		ColumnChooserModule,
 		MdIconModule,
 		MdButtonModule,
 		MdCheckboxModule,

@@ -17,6 +17,7 @@ import {TableCommandManager} from 'ng2-qgrid/core/command';
 import {isUndefined} from 'ng2-qgrid/core/utility';
 import {EventManager} from 'ng2-qgrid/core/infrastructure/event.manager';
 import {EventListener} from 'ng2-qgrid/core/infrastructure/event.listener';
+// import {PopupTriggerComponent} from 'ng2-qgrid/plugins';
 
 @Component({
 	selector: 'q-grid',

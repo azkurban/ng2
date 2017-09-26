@@ -31,8 +31,8 @@ const templates = [
 
 	require('./plugin-pager.tpl.html'),
 	require('./plugin-progress.tpl.html'),
-	require('./plugin-popup.tpl.html'),
-	require('./plugin-export.tpl.html')
+	require('./plugin-export.tpl.html'),
+	require('./plugin-popup.column-chooser.tpl.html')
 ];
 
 export const template = templates.join('\n\n');

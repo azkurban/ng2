@@ -45,8 +45,9 @@ export class PopupService {
 
 	private settings: IPopupSettings;
 	private popups: Map<string, Popup> = new Map();
+	private element: ElementRef;
 
-	constructor(private element: ElementRef) {
+	constructor() {
 	}
 
 	public close(id: string): void {
@@ -74,10 +75,12 @@ export class PopupService {
 		return null;
 	}
 
-	public open(settings: IPopupSettings, model: Model, scope: object): void {
+	public open(element: ElementRef, settings: IPopupSettings, model: Model, scope: object): void {
 		if (this.popups.hasOwnProperty(settings.id)) {
 			return;
 		}
+
+		this.element = element;
 
 		const target = this.targetize(settings);
 		const pos = this.position(target, settings);
@@ -87,7 +90,7 @@ export class PopupService {
 		// popupScope.id = settings.id;
 
 		const popup = this.element.nativeElement.document.body
-			.getElementsByTagName('<q-grid:popup-panel id="id" model="model">')[0]; // eslint-disable-line no-undef
+			.getElementsByTagName('<q-grid-popup-panel id="id" model="model">')[0]; // eslint-disable-line no-undef
 		this.popups[this.settings.id] = new Popup(popup, this.settings, this.element.nativeElement.document[0].body);
 
 		this.element.nativeElement.document[0].body.appendChild(popup[0]);

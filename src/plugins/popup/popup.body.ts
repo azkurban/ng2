@@ -7,7 +7,9 @@ import {NgComponent} from 'ng2-qgrid/infrastructure/component';
 
 @Component({
 	selector: 'q-grid-popup-body',
-	template: '<div></div>'
+	template: `
+		<ng-content></ng-content>
+	`
 })
 export class PopupBodyComponent extends NgComponent {
 	@Input() model;

@@ -22,6 +22,8 @@ import {NoContentComponent} from './no-content';
 import {GridModule} from '../../src';
 import {DataService} from '../data/data.service';
 
+import {PluginModule} from 'ng2-qgrid/plugins';
+
 // Application wide providers
 const APP_PROVIDERS = [
 	...APP_RESOLVER_PROVIDERS,
@@ -55,7 +57,8 @@ export type StoreType = {
 		MdButtonModule,
 		MdCheckboxModule,
 		MdCardModule,
-		FlexLayoutModule
+		FlexLayoutModule,
+		PluginModule
 	],
 	providers: [ // expose our Services and Providers into Angular's dependency injection
 		ENV_PROVIDERS,

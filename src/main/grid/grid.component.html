@@ -1,8 +1,11 @@
 <q-grid-theme></q-grid-theme>
+<!--<q-grid-popup id="test"></q-grid-popup>-->
+
 <q-grid-box class="q-grid-box layout-column" [ngClass]="{'q-grid-active': isActive}">
 	<q-grid-core-toolbar position="top"
 								class="q-grid-toolbar q-grid-toolbar-top flex-auto"
 								*ngIf="visibility.toolbar.top">
+		<!--<q-grid-popup-trigger popup-id="column-chooser"></q-grid-popup-trigger>-->
 	</q-grid-core-toolbar>
 	<div class="flex-100 layout-row"
 		  [ngClass]="{
@@ -21,8 +24,10 @@
 									*ngIf="visibility.toolbar.right">
 		</q-grid-core-toolbar>
 	</div>
+<!--
 	<q-grid-core-toolbar position="bottom"
 								class="q-grid-toolbar q-grid-toolbar-bottom flex-auto"
 								*ngIf="visibility.toolbar.bottom">
 	</q-grid-core-toolbar>
+-->
 </q-grid-box>

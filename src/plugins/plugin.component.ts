@@ -3,6 +3,8 @@ import {noop} from 'ng2-qgrid/core/utility';
 import {Input, OnChanges, OnDestroy, OnInit, Optional, SimpleChanges} from '@angular/core';
 import {NgComponent, RootService} from '../infrastructure/component';
 import {Guard} from 'ng2-qgrid/core/infrastructure';
+import {ColumnChooserModel} from './colum-chooser/column-chooser.model';
+import {PopupModel} from './popup/popup.model';
 
 export class PluginComponent extends NgComponent implements OnInit, OnChanges, OnDestroy {
 	@Input('model') public gridModel: any = null;

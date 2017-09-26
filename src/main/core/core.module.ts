@@ -12,6 +12,10 @@ import {TemplateCacheService} from 'ng2-qgrid/template';
 import {TemplateModule} from 'ng2-qgrid/template/template.module';
 import {CommonModule} from 'ng2-qgrid/common';
 import {TableCoreComponent} from 'ng2-qgrid/main/core/table';
+import {BoxComponent} from './box';
+
+// import {PopupModule} from 'ng2-qgrid/plugins';
+// import {PluginModule} from 'ng2-qgrid/plugins';
 
 @NgModule({
 	declarations: [
@@ -25,16 +29,18 @@ import {TableCoreComponent} from 'ng2-qgrid/main/core/table';
 		ThCoreDirective,
 		TdCoreDirective,
 		TfCoreDirective,
-		MarkupDirective
+		MarkupDirective,
+		BoxComponent
 	],
 	exports: [
 		ViewCoreComponent,
-		ToolbarCoreComponent
+		ToolbarCoreComponent,
+		BoxComponent
 	],
 	imports: [
 		BrowserModule,
 		TemplateModule,
-		CommonModule
+		CommonModule,
 	],
 	providers: [
 		VScrollService,

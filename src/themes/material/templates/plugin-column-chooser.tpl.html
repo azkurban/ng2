@@ -1,0 +1,25 @@
+<ng-template key="column-chooser.tpl" let-$chooser>
+	<div class="q-grid-column-chooser">
+		<label>Columns:</label>
+		<ul>
+			<li *ngFor="let column of $chooser.columns">
+				<label>
+					<md-checkbox
+						q-grid-focus
+						[(ngModel)]="$chooser.checked"
+						(click)="toggle.execute(column)"
+						*ngIf="toggle.canExecute(column)">
+					</md-checkbox>
+				</label>
+				<md-select
+					q-grid-focus
+					[(ngModel)]="column.aggregation"
+					(change)="toggleAggregation.execute(column)">
+					<md-option value="" disabled >Aggregation</md-option>
+					<md-option *ngFor="let aggregation of aggregations" [value]="aggregation"></md-option>
+				</md-select>
+			</li>
+		</ul>
+	</div>
+
+</ng-template>

@@ -7,7 +7,11 @@ import {NgComponent} from 'ng2-qgrid/infrastructure/component';
 
 @Component({
 	selector: 'q-grid-popup-head',
-	template: '<div></div>'
+	template: `
+		<div>
+			<ng-content></ng-content>
+		</div>
+	`
 })
 
 export class PopupHeadComponent extends NgComponent {
