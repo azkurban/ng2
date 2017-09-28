@@ -1,16 +1,7 @@
 <ng-template key="top-toolbar.tpl.html">
 	<q-grid-progress></q-grid-progress>
-	<q-grid-popup key="column-chooser-popup" id="column-chooser">
-		<ng-template for="trigger" let-$popup>
-			<button md-button (click)="$popup.open({width: 352, height: 652})" class="md-icon-button"
-						  tabindex="-1">
-				<md-icon>more_vert</md-icon>
-			</button>
-		</ng-template>
-		<ng-template for="body">
-			<q-grid-column-chooser (submit)="$popupBody.close()"
-										  (cancel)="$popupBody.close()">
-			</q-grid-column-chooser>
-		</ng-template>
-	</q-grid-popup>
+	<h3 class="mat-card-title" style="margin: 0; height: 56px; line-height: 56px; display: inline">
+		NG2 QGRID
+	</h3>
+	<q-grid-popup id="column-chooser"></q-grid-popup>
 </ng-template>

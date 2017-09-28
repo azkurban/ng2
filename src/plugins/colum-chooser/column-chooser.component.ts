@@ -13,7 +13,7 @@ import {COLUMN_CHOOSER_NAME} from '../definition';
 @Component({
 	selector: 'q-grid-column-chooser',
 	template: `
-		<ng-container key="colum-chooser.tpl" [context]="context"></ng-container>
+		<ng-container key="column-chooser.tpl" [context]="context"></ng-container>
 	`
 	// templateUrl: './column-chooser.tpl.html'
 })

@@ -30,7 +30,7 @@ import {ExportModel} from '../export/export.model';
 import {ActionModel} from '../action/action.model';
 import {FetchModel} from '../fetch/fetch.model';
 import {Event} from './event';
-import {PopupModel, PopupModule} from "ng2-qgrid/plugins";
+import {PopupModel, PopupModule} from 'ng2-qgrid/plugins';
 
 export declare class Model {
 	constructor();

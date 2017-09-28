@@ -107,6 +107,8 @@ export class GridComponent extends RootComponent implements OnInit {
 				this.invalidateVisibility();
 			}
 		}));
+
+		this.visibility.toolbar.right = true;
 	}
 
 	invalidateVisibility() {
