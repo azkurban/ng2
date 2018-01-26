@@ -26,10 +26,6 @@ export class BodyCoreComponent extends NgComponent implements OnInit {
 		super();
 	}
     
-    // private get bodyLastRow(){
-    //     return this.$view.body.lastRow;
-    // }
-
 	ngOnInit() {
 		const view = this.$view;
 		const element = this.element.nativeElement as HTMLElement;
