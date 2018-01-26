@@ -1,0 +1,27 @@
+<table q-grid-markup="table">
+        <!-- <colgroup>
+            <col style="background-color:rgb(0, 255, 234)">
+            <col span="10"
+                 style="background-color:rgb(255, 238, 0);width:450px !important">
+        </colgroup> -->
+            
+	<thead *ngIf="visibility.head"
+			 q-grid-core-head
+			 q-grid-markup="head"
+			 q-grid-animate="false"
+			 q-grid-core-head>
+	</thead>
+	<tbody *ngIf="visibility.body"
+			 q-grid-markup="body"
+			 q-grid-animate="false"
+			 vscroll
+			 vscroll-port-y="$view.scroll.y"
+			 q-grid-core-body
+			 tabindex="0">
+	</tbody>
+	<tfoot *ngIf="visibility.foot"
+			 q-grid-markup="foot"
+			 q-grid-animate="false"
+			 q-grid-core-foot>
+	</tfoot>
+</table>
