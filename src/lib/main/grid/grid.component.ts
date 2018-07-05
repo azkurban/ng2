@@ -70,7 +70,7 @@ export class GridComponent extends RootComponent implements OnInit {
 	@Input() editMode: 'cell' | 'row';
 	@Input() editReset: Command;
 
-	@Input() filterFetch: (key: string, context: FetchContext) => any | Promise<any>;;
+	@Input() filterFetch: (key: string, context: FetchContext) => any | Promise<any>;
 	@Input() filterUnit: 'default' | 'row';
 
 	@Input() groupBy: Array<string>;
@@ -88,13 +88,16 @@ export class GridComponent extends RootComponent implements OnInit {
 	@Input() selectionMode: 'single' | 'multiple' | 'range';
 	@Input() selectionUnit: 'row' | 'cell' | 'column' | 'mix';
 
-	@Input() scrollMode:  'default' | 'virtual';
+	@Input() scrollMode: 'default' | 'virtual';
 
 	@Input() sortBy: Array<string>;
-	@Input() sortMode: 'single' | 'multiple';;
+	@Input() sortMode: 'single' | 'multiple';
 	@Input() sortTrigger: Array<string>;
 
-	@Input() styleCell: (row: any, column: ColumnModel, context: StyleCellContext) => void | { [key: string]: (row: any, column: ColumnModel, context: any) => void };
+	@Input() styleCell:
+		(row: any, column: ColumnModel, context: StyleCellContext) => void
+			| { [key: string]: (row: any, column: ColumnModel, context: any) => void };
+
 	@Input() styleRow: (row: any, context: StyleRowContext) => void;
 
 	@Output() selectionChanged = new EventEmitter<any>();
@@ -141,16 +144,16 @@ export class GridComponent extends RootComponent implements OnInit {
 		const model = this.root.model;
 
 		const element = this.element.nativeElement;
-		
+
 		model.style({
 			classList: Array.from(element.classList)
 		});
-		
+
 		const ctrl = this.using(new GridCtrl(model, {
 			layerFactory: () => this.layerService,
 			element
 		}));
-		
+
 
 		this.root.table = ctrl.table;
 		this.root.bag = ctrl.bag;
@@ -164,7 +167,7 @@ export class GridComponent extends RootComponent implements OnInit {
 		const listener = new EventListener(element, new EventManager(this));
 		const windowListener = new EventListener(element, new EventManager(this));
 
-		this.using(windowListener.on('focusin', ctrl.invalidateActive.bind(ctrl)));
+		this.zone.runOutsideAngular(() => this.using(windowListener.on('focusin', ctrl.invalidateActive.bind(ctrl))));
 
 		const { debounce } = model.navigation();
 		if (debounce) {
