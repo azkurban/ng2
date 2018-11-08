@@ -1,5 +1,4 @@
-import { Component, Optional, Input, OnInit, OnDestroy } from '@angular/core';
-import { PluginService } from '../plugin.service';
+import { Component, Input } from '@angular/core';
 import { Td } from 'ng2-qgrid/core/dom/td';
 
 @Component({
@@ -7,7 +6,7 @@ import { Td } from 'ng2-qgrid/core/dom/td';
 	templateUrl: './edit-form-trigger.component.html'
 })
 export class EditFormTriggerComponent {
-	@Input() title: string;
+	@Input() caption: string;
 	@Input() cell: Td;
 
 	context: any = {

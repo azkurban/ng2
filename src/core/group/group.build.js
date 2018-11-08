@@ -16,7 +16,7 @@ export function groupBuilder(model) {
 
 	const columnMap = getColumnMap(columns);
 
-	return (valueFactory) => {
+	return valueFactory => {
 		const result = [];
 		for (let i = 0, nodeLength = nodes.length; i < nodeLength; i++) {
 			const node = nodes[i];
@@ -24,14 +24,14 @@ export function groupBuilder(model) {
 			const column = columnMap[key];
 			if (!column) {
 				throw new AppError(
-					'view.pivot',
+					'group.build',
 					`Invalid key "${key}"`);
 			}
 
 			const aggregation = column.aggregation || 'count';
 			if (!Aggregation.hasOwnProperty(aggregation)) {
 				throw new AppError(
-					'view.pivot',
+					'group.build',
 					`Aggregation ${aggregation} is not registered`);
 			}
 

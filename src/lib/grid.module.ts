@@ -16,6 +16,7 @@ import { PluginModule } from './plugins/plugin.module';
 import { FocusModule } from './common/focus/focus.module';
 import { RowComponent } from './main/core/row/row.component';
 import { ThemeService } from './template/theme.service';
+import { BackdropService } from './plugins/backdrop/backdrop.service';
 
 @NgModule({
 	declarations: [],
@@ -35,10 +36,11 @@ import { ThemeService } from './template/theme.service';
 		TemplateModule
 	],
 	providers: [
-		DatePipe, 
+		DatePipe,
 		DecimalPipe,
 		CurrencyPipe,
-		ThemeService
+		ThemeService,
+		BackdropService
 	]
 })
 export class GridModule {

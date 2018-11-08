@@ -64,6 +64,7 @@ export class PipeModel {
 			},
 			'filter': {
 				'by': PU.default,
+				'match': PU.default,
 				'unit': PU.column
 			},
 			'group': {
@@ -73,7 +74,7 @@ export class PipeModel {
 				'by': PU.default
 			},
 			'columnList': {
-				'index': PU.column
+				'index': PU.columnIndex
 			},
 			'row': {
 				'status': PU.rowDetails,

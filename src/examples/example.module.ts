@@ -43,6 +43,7 @@ import { ExampleDetailsRowStartComponent } from './details-row-start/example-det
 import { ExampleDragColumnBasicComponent } from './drag-column-basic/example-drag-column-basic.component';
 import { ExampleDragRowBasicComponent } from './drag-row-basic/example-drag-row-basic.component';
 import { ExampleDragRowNodeComponent } from './drag-row-node/example-drag-row-node.component';
+import { ExampleDynamicColumnModelComponent } from './dynamic-column-moodel/example-dynamic-column-model.component';
 import { ExampleEditCellBasicComponent } from './edit-cell-basic/example-edit-cell-basic.component';
 import { ExampleEditCellBatchComponent } from './edit-cell-batch/example-edit-cell-batch.component';
 import { ExampleEditRowBasicComponent } from './edit-row-basic/example-edit-row-basic.component';
@@ -50,6 +51,7 @@ import { ExampleExportBasicComponent } from './export-basic/example-export-basic
 import { ExampleFilterColumnFetchComponent } from './filter-column-fetch/example-filter-column-fetch.component';
 import { ExampleFilterConditionBasicComponent } from './filter-condition-basic/example-filter-condition-basic.component';
 import { ExampleFilterRowBasicComponent } from './filter-row-basic/example-filter-row-basic.component';
+import { ExampleFilterRowCustomComponent } from './filter-row-custom/example-filter-row-custom.component';
 import { ExampleFloatingRowsBasicComponent } from './floating-rows-basic/example-floating-rows-basic.component';
 import { ExampleFocusCellAutoComponent } from './focus-cell-auto/example-focus-cell-auto.component';
 import { ExampleFocusCellBasicComponent } from './focus-cell-basic/example-focus-cell-basic.component';
@@ -93,6 +95,7 @@ import { ExamplePinColumnBasicComponent } from './pin-column-basic/example-pin-c
 import { ExamplePipeGridBasicComponent } from './pipe-grid-basic/example-pipe-grid-basic.component';
 import { ExamplePivotColumnBasicComponent } from './pivot-column-basic/example-pivot-column-basic.component';
 import { ExamplePivotColumnCohortComponent } from './pivot-column-cohort/example-pivot-column-cohort.component';
+import { ExamplePivotColumnGroupComponent } from './pivot-column-group/example-pivot-column-group.component';
 import { ExamplePivotColumnTemplateComponent } from './pivot-column-template/example-pivot-column-template.component';
 import { ExamplePluginGridBasicComponent } from './plugin-grid-basic/example-plugin-grid-basic.component';
 import { ExamplePluginMyPagerComponent } from './plugin-grid-basic/example-plugin-my-pager.component';
@@ -120,6 +123,7 @@ import { ExampleSummaryColumnAggregationComponent } from './summary-column-aggre
 import { ExampleSummaryColumnBasicComponent } from './summary-column-basic/example-summary-column-basic.component';
 import { ExampleThemeGridDarkComponent } from './theme-grid-dark/example-theme-grid-dark.component';
 import { ExampleThemeGridEmbedComponent } from './theme-grid-embed/example-theme-grid-embed.component';
+import { ExampleValidationBasicComponent } from './validation-basic/example-validation-basic.component';
 
 const EXAMPLES: Array<any> = [
 	ExampleActionBarBasicComponent,
@@ -158,6 +162,7 @@ const EXAMPLES: Array<any> = [
 	ExampleDragColumnBasicComponent,
 	ExampleDragRowBasicComponent,
 	ExampleDragRowNodeComponent,
+	ExampleDynamicColumnModelComponent,
 	ExampleEditCellBasicComponent,
 	ExampleEditCellBatchComponent,
 	ExampleEditRowBasicComponent,
@@ -165,6 +170,7 @@ const EXAMPLES: Array<any> = [
 	ExampleFilterColumnFetchComponent,
 	ExampleFilterConditionBasicComponent,
 	ExampleFilterRowBasicComponent,
+	ExampleFilterRowCustomComponent,
 	ExampleFloatingRowsBasicComponent,
 	ExampleFocusCellAutoComponent,
 	ExampleFocusCellBasicComponent,
@@ -208,6 +214,7 @@ const EXAMPLES: Array<any> = [
 	ExamplePipeGridBasicComponent,
 	ExamplePivotColumnBasicComponent,
 	ExamplePivotColumnCohortComponent,
+	ExamplePivotColumnGroupComponent,
 	ExamplePivotColumnTemplateComponent,
 	ExamplePluginGridBasicComponent,
 	ExampleScrollVirtualBasicComponent,
@@ -234,6 +241,7 @@ const EXAMPLES: Array<any> = [
 	ExampleSummaryColumnBasicComponent,
 	ExampleThemeGridDarkComponent,
 	ExampleThemeGridEmbedComponent,
+	ExampleValidationBasicComponent
 ];
 
 const PATH_REGEX = /Example(.*)Component/;
@@ -271,4 +279,4 @@ export const exampleRoutes: Routes = EXAMPLES.map<Route>(example => ({
 		MatIconModule
 	]
 })
-export class ExampleModule {}
+export class ExampleModule { }

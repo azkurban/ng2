@@ -1,4 +1,4 @@
-<ng-template key='filter-cell-date.tpl.html'
+<ng-template key="filter-cell-date.tpl.html"
              let-$cell
              let-$view="$view">
     <mat-form-field *ngIf="$cell.column.canFilter"
@@ -9,7 +9,7 @@
         <input matInput
                #input
                [matDatepicker]="picker"
-               (dateChange)="$view.head.filter.execute($cell.column.model, input.value)" />
+               (dateChange)="$view.filter.column.execute($cell.column.model, input.value)" />
         <mat-datepicker-toggle matSuffix
                                [for]="picker">
         </mat-datepicker-toggle>
