@@ -1,24 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DataService } from '../data.service';
 import { Grid, GridModel, Command, Node } from 'ng2-qgrid';
+
+const EXAMPLE_TAGS = [
+	'hierarchy-browser-basic',
+	'Table content is folder tree'
+];
 
 @Component({
 	selector: 'example-hierarchy-browser-basic',
 	templateUrl: 'example-hierarchy-browser-basic.component.html',
 	styleUrls: ['example-hierarchy-browser-basic.component.scss'],
-	providers: [DataService]
+	providers: [DataService],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExampleHierarchyBrowserBasicComponent {
-	gridModel: GridModel;
+	static tags = EXAMPLE_TAGS;
+	title = EXAMPLE_TAGS[1];
 
-	constructor(qgrid: Grid) {
-		this.gridModel = qgrid.model();
+	gridModel: GridModel = this.qgrid.model();
 
+	constructor(private qgrid: Grid) {
+		const gridService = qgrid.service(this.gridModel);
 		const root = new Node('$root', 0);
 		(root as any).isVisited = false;
 
 		const tree = [root];
-		const service = qgrid.service(this.gridModel);
 		const treePipe = (memo, context, next) => {
 			memo.nodes = tree;
 			next(memo);
@@ -30,7 +37,8 @@ export class ExampleHierarchyBrowserBasicComponent {
 					qgrid.pipe.memo,
 					treePipe,
 					qgrid.pipe.column,
-					qgrid.pipe.view
+					qgrid.pipe.view,
+					qgrid.pipe.scene
 				]
 			})
 			.group({
@@ -52,7 +60,7 @@ export class ExampleHierarchyBrowserBasicComponent {
 								return child;
 							});
 
-							service.invalidate();
+							gridService.invalidate();
 						}, 500);
 					}
 				})
@@ -61,11 +69,7 @@ export class ExampleHierarchyBrowserBasicComponent {
 				mode: 'multiple',
 				unit: 'row',
 				area: 'custom',
-				key: {
-					row: function row(node) {
-						return node.key;
-					}
-				}
+				rowKey: node => node.key
 			});
 	}
 }

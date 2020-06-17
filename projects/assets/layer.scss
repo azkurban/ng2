@@ -1,0 +1,9 @@
+.q-grid-layer {
+    @include absolute-stretched;
+    pointer-events: none;
+    z-index: 3;
+
+    >* {
+        pointer-events: all;
+    }
+}

@@ -1,11 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+
+const EXAMPLE_TAGS = [
+	'column-date-basic',
+	'Cell value is date'
+];
 
 @Component({
 	selector: 'example-column-date-basic',
 	templateUrl: 'example-column-date-basic.component.html',
-	styleUrls: ['example-column-date-basic.component.scss']
+	styleUrls: ['example-column-date-basic.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExampleColumnDateBasicComponent {
+	static tags = EXAMPLE_TAGS;
+	title = EXAMPLE_TAGS[1];
+
 	rows = [
 		{
 			'number': 100.12,

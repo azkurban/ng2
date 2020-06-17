@@ -1,11 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+
+const EXAMPLE_TAGS = [
+	'column-bool-basic',
+	'Cell value is boolean'
+];
 
 @Component({
 	selector: 'example-column-bool-basic',
 	templateUrl: 'example-column-bool-basic.component.html',
-	styleUrls: ['example-column-bool-basic.component.scss']
+	styleUrls: ['example-column-bool-basic.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExampleColumnBoolBasicComponent {
+	static tags = EXAMPLE_TAGS;
+	title = EXAMPLE_TAGS[1];
+
 	rows = [
 		{
 			'true': true,
@@ -16,6 +25,7 @@ export class ExampleColumnBoolBasicComponent {
 			'noYes': 'no',
 			'nullYesNo': null,
 			'triggerFocus': true,
+			'triggerClick': false,
 			'customTemplate': true
 		}
 	];

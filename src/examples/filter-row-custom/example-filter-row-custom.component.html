@@ -7,11 +7,11 @@ Phase: <input type="search"
        placeholder="Filter by phase" />
 
 
-<q-grid caption="Filter Row Custom"
+<q-grid [caption]="title"
         [rows]="rows | async"
         [model]="gridModel">
 	<q-grid-columns generation="deep">
-		<q-grid-column canFilter="false"></q-grid-column>
+		<q-grid-column [canFilter]="false"></q-grid-column>
 	</q-grid-columns>
 
 </q-grid>

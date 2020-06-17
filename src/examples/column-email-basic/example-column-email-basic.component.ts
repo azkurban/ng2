@@ -1,11 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+
+const EXAMPLE_TAGS = [
+	'column-email-basic',
+	'Cell value is email'
+];
 
 @Component({
 	selector: 'example-column-email-basic',
 	templateUrl: 'example-column-email-basic.component.html',
-	styleUrls: ['example-column-email-basic.component.scss']
+	styleUrls: ['example-column-email-basic.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExampleColumnEmailBasicComponent {
+	static tags = EXAMPLE_TAGS;
+	title = EXAMPLE_TAGS[1];
+
 	rows = [
 		{
 			'valid': 'qgrid.team@gmail.com',
@@ -24,8 +33,9 @@ export class ExampleColumnEmailBasicComponent {
 
 	constructor() {
 		const self = this;
-		this.myLabel = function (row, value) {
-			if (arguments.length > 1) {
+		this.myLabel = (...args) => {
+			const [_, value] = args;
+			if (args.length > 1) {
 				self.label = value;
 				return;
 			}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DataService } from '../data.service';
 import { GridModel, Grid } from 'ng2-qgrid';
 
@@ -6,9 +6,12 @@ import { GridModel, Grid } from 'ng2-qgrid';
 	selector: 'example-focus-cell-basic',
 	templateUrl: 'example-focus-cell-basic.component.html',
 	styleUrls: ['example-focus-cell-basic.component.scss'],
-	providers: [DataService]
+	providers: [DataService],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExampleFocusCellBasicComponent {
+	static id = 'focus-cell-basic';
+
 	gridModel: GridModel;
 
 	constructor(dataService: DataService, qgrid: Grid) {
@@ -20,7 +23,9 @@ export class ExampleFocusCellBasicComponent {
 				this.gridModel.data({ rows });
 
 				const gridService = qgrid.service(this.gridModel);
-				gridService.focus(1, 2);
+
+				// navigate to the 2nd page to the bottom
+				gridService.focus(99, 2);
 			});
 	}
 }

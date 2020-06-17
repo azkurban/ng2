@@ -1,14 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService, Atom } from '../data.service';
-import { Action, Command } from 'ng2-qgrid';
-import { from, Observable, of } from 'rxjs';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Observable, of } from 'rxjs';
+
+const EXAMPLE_TAGS = [
+	'column-autocomplete-basic',
+	'Cell value can be entered using autocomplete feature'
+];
 
 @Component({
 	selector: 'example-column-autocomplete-basic',
 	templateUrl: 'example-column-autocomplete-basic.component.html',
-	styleUrls: ['example-column-autocomplete-basic.component.scss']
+	styleUrls: ['example-column-autocomplete-basic.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ExampleColumnAutocompletetBasicComponent {
+export class ExampleColumnAutocompleteBasicComponent {
+	static tags = EXAMPLE_TAGS;
+	title = EXAMPLE_TAGS[1];
+
 	rows = [
 		{
 			'number': 0,
@@ -17,7 +24,8 @@ export class ExampleColumnAutocompletetBasicComponent {
 			'date': new Date(2018, 9, 12),
 			'null': null,
 			'undefined': undefined,
-			'empty': ''
+			'empty': '',
+			'object': { label: 'foo', value: 1 }
 		}
 	];
 
@@ -50,4 +58,23 @@ export class ExampleColumnAutocompletetBasicComponent {
 	numberObservableFetchOptions = {
 		fetch: of([Math.PI, Math.LN10, Math.LN2, Math.E, Math.LOG10E, Math.LOG2E, Math.SQRT1_2])
 	};
+
+	multiFetchOptions = {
+		fetch: of([])
+	};
+
+	objectFetchOptions = {
+		fetch: [
+			{ label: 'foo', value: 1 },
+			{ label: 'bar', value: 2 }
+		]
+	};
+
+	getLabel(row: any) {
+		return row.object.label;
+	}
+
+	getItemLabel(item: { label: string }) {
+		return item ? item.label : '';
+	}
 }

@@ -1,15 +1,30 @@
-# E2E
-
-## Launch all features
+## Launch screenshot-testing
 
 ```bash
-npm run e2e
+npm run test:screenshot
 ```
 
-## Launch specific feature
+## Launch specific feature in screenshot-testing
 
 ```bash
-npm run e2e -- --specs=e2e/features/pagination-basic.feature
+npm run test:screenshot -- --specs=e2e/features/select-cell-basic.feature
+```
+
+## Update golden screenshots for screenshot-testing
+
+```bash
+npm run test:screenshot-update-goldens
+```
+
+## Run tagged features/scenario
+
+```bash
+npm run test:screenshot -- --cucumberOpts.tags @basic
+```
+## Exclude tagged features/scenario
+
+```bash
+npm run test:screenshot -- --cucumberOpts.tags ~@basic
 ```
 
 ## Good practice

@@ -1,8 +1,8 @@
-<q-grid caption="Column Row Options Basic"
+<q-grid [caption]="title"
         [rows]="rows | async">
 	<q-grid-columns generation="deep">
 		<q-grid-column key="source"
-		               isVisible="false">
+		               [isVisible]="false">
 		</q-grid-column>
 		<q-grid-column key="rowOptions"
 		               type="row-options"

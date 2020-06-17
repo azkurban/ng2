@@ -11,8 +11,9 @@ import { GridComponent } from 'ng2-qgrid';
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExampleOnPushBasicComponent implements AfterViewInit {
-	@ViewChild(GridComponent) myGrid: GridComponent;
+	static id = 'on-push-basic';
 
+	@ViewChild(GridComponent) grid: GridComponent;
 	rows: Observable<Atom[]>;
 
 	constructor(dataService: DataService) {
@@ -21,7 +22,7 @@ export class ExampleOnPushBasicComponent implements AfterViewInit {
 
 	ngAfterViewInit() {
 		setTimeout(() => {
-			const { rows } = this.myGrid.model.data();
+			const { rows } = this.grid.model.data();
 			if (rows.length) {
 				rows[0].number = rows[0].number + 1;
 			}

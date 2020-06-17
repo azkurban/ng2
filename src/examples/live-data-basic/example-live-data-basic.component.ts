@@ -1,54 +1,81 @@
-import { Component, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { DataService, Quote } from '../data.service';
-import { Observable } from 'rxjs';
-import { Column, StyleCellContext } from 'ng2-qgrid';
+
+const EXAMPLE_TAGS = [
+	'live-data-basic',
+	'Table data updates in real time'
+];
 
 @Component({
 	selector: 'example-live-data-basic',
 	templateUrl: 'example-live-data-basic.component.html',
 	styleUrls: ['example-live-data-basic.component.scss'],
-	providers: [DataService]
+	providers: [DataService],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	encapsulation: ViewEncapsulation.None
 })
-export class ExampleLiveDataBasicComponent {
-	rows: Quote[];
+export class ExampleLiveDataBasicComponent implements OnDestroy {
+	static tags = EXAMPLE_TAGS;
+	title = EXAMPLE_TAGS[1];
 
-	constructor(dataService: DataService) {
-		dataService.getQuotes().subscribe(quotes => {
+	rows: Quote[];
+	timeoutId: any = null;
+
+	constructor(private dataService: DataService, private cd: ChangeDetectorRef) {
+		this.dataService.getQuotes().subscribe(quotes => {
 			this.rows = quotes;
-			this.update();
+			this.update(true);
 		});
 	}
 
-	diff(cell) {
-		const row = cell.$row;
-		return row.last - row.previous;
-	}
-
-	styleCell(row: Quote, column: Column, context: StyleCellContext) {
-		if (column.key === 'last') {
-			const d = this.diff({ $row: row });
-			if (d !== 0) {
-				context.class(d > 0 ? 'positive' : 'negative');
-			}
-		}
-	}
-
-	update() {
-		const interval = this.random(200, 2000);
-		setTimeout(() => {
-			this.rows.forEach(quote => {
-				const hasChanges = this.random(0, 2);
+	update(immediately = false) {
+		this.timeoutId = setTimeout(() => {
+			const rows = Array.from(this.rows);
+			rows.forEach(quote => {
+				const hasChanges = this.random(0, 5);
 				if (hasChanges) {
-					const rnd = this.random(-5, 5);
-					quote.last = quote.last + rnd;
+					const rnd = this.random(-50000, 50000);
+					quote.last += rnd;
+					quote.ask += rnd;
+					quote.ldn1 = this.randomTime(quote.ldn1);
 				}
 			});
 
+			this.rows = rows;
+			this.cd.markForCheck();
+			this.cd.detectChanges();
 			this.update();
-		}, interval);
+		}, immediately ? 0 : this.random(2000, 4000));
 	}
 
-	random(min, max) {
+	random(min: number, max: number) {
 		return Math.floor(Math.random() * (max - min)) + min;
+	}
+
+	randomTime(time: string): string {
+		if (time.indexOf(':') === -1) {
+			return time;
+		}
+		return time.split(':').map((val, i) => {
+			let num = +val;
+			if (i === 0) {
+				num += this.random(-5, 5);
+				if (num > 23 || num < 0) {
+					num = Math.sqrt(Math.pow(num % 24, 2));
+				}
+			} else if (i === 1) {
+				num += this.random(-20, 20);
+				if (num > 59 || num < 0) {
+					num = Math.sqrt(Math.pow(num % 60, 2));
+				}
+			}
+			return num.toString().padStart(2, '0');
+		}).join(':');
+	}
+
+	ngOnDestroy() {
+		if (this.timeoutId) {
+			clearTimeout(this.timeoutId);
+		}
 	}
 }

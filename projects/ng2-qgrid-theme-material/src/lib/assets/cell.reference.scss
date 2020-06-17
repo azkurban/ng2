@@ -1,0 +1,19 @@
+.q-grid-editor.q-grid-reference {
+    height: 420px;
+    width: 385px;
+
+    .q-grid-reference-content {
+        @include simpleSquareElement(100%);
+        height: 325px;
+
+        q-grid-caption {
+            h2 {
+                margin-bottom: 8px;
+            }
+        }
+
+        q-grid {
+            height: 100%;
+        }
+    }
+}

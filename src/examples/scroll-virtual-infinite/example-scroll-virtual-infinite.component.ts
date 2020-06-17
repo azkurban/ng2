@@ -1,15 +1,20 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { DataService, Atom } from '../data.service';
+import { Component, ViewChild, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
+import { Atom, DataService } from '../data.service';
 import { GridComponent, Grid } from 'ng2-qgrid';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'example-scroll-virtual-infinite',
 	templateUrl: 'example-scroll-virtual-infinite.component.html',
 	styleUrls: ['example-scroll-virtual-infinite.component.scss'],
-	providers: [DataService]
+	providers: [DataService],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExampleScrollVirtualInfiniteComponent implements AfterViewInit {
+	static id = 'scroll-virtual-infinite';
+
 	@ViewChild(GridComponent) myGrid;
+	rows: Observable<Atom[]>;
 
 	constructor(private dataService: DataService, private qgrid: Grid) {
 	}

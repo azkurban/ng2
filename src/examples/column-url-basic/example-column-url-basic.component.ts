@@ -1,11 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+
+const EXAMPLE_TAGS = [
+	'column-url-basic',
+	'Cell value is an url'
+];
 
 @Component({
 	selector: 'example-column-url-basic',
 	templateUrl: 'example-column-url-basic.component.html',
-	styleUrls: ['example-column-url-basic.component.scss']
+	styleUrls: ['example-column-url-basic.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExampleColumnUrlBasicComponent {
+	static tags = EXAMPLE_TAGS;
+	title = EXAMPLE_TAGS[1];
+
 	rows = [
 		{
 			'valid': 'http://github.com/qgrid/ng2',
@@ -24,8 +33,9 @@ export class ExampleColumnUrlBasicComponent {
 
 	constructor() {
 		const self = this;
-		this.myLabel = function (row, value) {
-			if (arguments.length > 1) {
+		this.myLabel = (...args) => {
+			const [_, value] = args;
+			if (args.length > 1) {
 				self.label = value;
 				return;
 			}
@@ -33,5 +43,4 @@ export class ExampleColumnUrlBasicComponent {
 			return self.label;
 		};
 	}
-
 }

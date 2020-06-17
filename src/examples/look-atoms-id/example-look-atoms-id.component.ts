@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
 import { DataService, Atom } from '../data.service';
 import { Observable } from 'rxjs';
 import { GridComponent } from 'ng2-qgrid';
@@ -7,10 +7,13 @@ import { GridComponent } from 'ng2-qgrid';
 	selector: 'example-look-atoms-id',
 	templateUrl: 'example-look-atoms-id.component.html',
 	styleUrls: ['example-look-atoms-id.component.scss'],
-	providers: [DataService]
+	providers: [DataService],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExampleLookAtomsIdComponent implements AfterViewInit {
-	@ViewChild(GridComponent) myGrid: GridComponent;
+	static id = 'look-atoms-id';
+
+	@ViewChild(GridComponent) grid: GridComponent;
 	rows: Observable<Atom[]>;
 
 	constructor(dataService: DataService) {
@@ -18,9 +21,10 @@ export class ExampleLookAtomsIdComponent implements AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		this.myGrid.model.dataChanged.watch((e, off) => {
+		const { model } = this.grid;
+		model.dataChanged.watch((e, off) => {
 			if (e.hasChanges('columns')) {
-				this.myGrid.model.sort({
+				model.sort({
 					by: ['number']
 				});
 

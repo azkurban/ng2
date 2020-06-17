@@ -1,33 +1,55 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { MatCardModule, MatSelectModule, MatSidenavModule, MatToolbarModule, MatIconModule, MatListModule, MatButtonModule } from '@angular/material';
+import { RouterModule, Router } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { exampleRoutes, ExampleModule } from '../examples/example.module';
+import { ExampleModule, EXAMPLES, APP_ROUTES } from '../examples/example.module';
+
+import { FilterSearchPipe } from './app.filter.pipe';
+import { HighlightPipe } from './app.highlight.pipe';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatListModule,
-    MatButtonModule,
-    RouterModule.forRoot(
-      exampleRoutes
-    ),
-    ExampleModule
-  ],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		FilterSearchPipe,
+		HighlightPipe
+	],
+	imports: [
+		CommonModule,
+		BrowserModule,
+		BrowserAnimationsModule,
+		MatCardModule,
+		MatSelectModule,
+		MatSidenavModule,
+		MatToolbarModule,
+		MatIconModule,
+		MatListModule,
+		MatInputModule,
+		MatButtonModule,
+		RouterModule.forRoot([{
+			path: '',
+			redirectTo: 'action-bar-basic',
+			pathMatch: 'full'
+		}]),
+		ExampleModule,
+		FormsModule
+	],
+	bootstrap: [AppComponent],
+	entryComponents: EXAMPLES
 })
-export class AppModule { }
+export class AppModule {
+	constructor(router: Router) {
+		router.config.unshift(...APP_ROUTES);
+	}
+}

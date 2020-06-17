@@ -1,21 +1,33 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { DataService, Human } from '../data.service';
 import { Observable } from 'rxjs';
-import { Column, BoolColumn, Grid, PipeContext, GridComponent, Command } from 'ng2-qgrid';
+import { Column, BoolColumn, Grid, PipeContext, GridComponent } from 'ng2-qgrid';
+
+const EXAMPLE_TAGS = [
+	'edit-row-basic',
+	'Entire row can be edited in separate menu'
+];
 
 @Component({
 	selector: 'example-edit-row-basic',
 	templateUrl: 'example-edit-row-basic.component.html',
 	styleUrls: ['example-edit-row-basic.component.scss'],
-	providers: [DataService]
+	providers: [DataService],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExampleEditRowBasicComponent implements OnInit {
-	rows: Observable<Human[]>;
-	columns: Array<Column | BoolColumn>;
-	@ViewChild(GridComponent) myGrid: GridComponent;
+	static tags = EXAMPLE_TAGS;
+	title = EXAMPLE_TAGS[1];
 
-	constructor(private dataService: DataService, private qgrid: Grid) {
-		this.rows = dataService.getPeople();
+	@ViewChild(GridComponent, { static: true }) myGrid: GridComponent;
+
+	rows$: Observable<Human[]> = this.dataService.getPeople();
+	columns: Array<Column | BoolColumn>;
+
+	constructor(
+		private dataService: DataService,
+		private qgrid: Grid
+	) {
 	}
 
 	ngOnInit() {
@@ -60,32 +72,29 @@ export class ExampleEditRowBasicComponent implements OnInit {
 				type: 'reference',
 				value: (item, value) => isUndef(value) ? item.teammates || [] : item.teammates = value,
 				label: (item) => {
-					const { rows } = this.myGrid.model.data();
 					return (item.teammates || [])
 						.map(x => `${x.name.last} ${x.name.first}`)
 						.join(', ');
 				},
 				editorOptions: {
 					modelFactory: () => {
-						const { rows } = this.myGrid.model.data();
+						const { rows } = this.qgrid.model().data();
 						const model = this.qgrid.model();
 						model
 							.selection({
 								mode: 'multiple',
 								unit: 'row',
-								key: {
-									row: x => rows.findIndex(r => r.name.last === x.name.last && r.name.first === x.name.first)
-								}
+								rowKey: x => rows.findIndex(r => r.name.last === x.name.last && r.name.first === x.name.first)
 							})
 							.columnList({
 								generation: 'deep'
-							}) 
+							})
 							.data({
 								pipe: [
 									(_: any[], context: PipeContext, next: (rows: any[]) => void) => {
 										this.dataService.getPeople(10).subscribe(people => next(people));
 									}
-								].concat(this.qgrid.pipeUnit.default)
+								].concat(this.qgrid.pipeUnit.default as any[])
 							});
 
 						return model;
@@ -127,7 +136,7 @@ export class ExampleEditRowBasicComponent implements OnInit {
 				key: 'contact.phone',
 				title: 'Contact Phones',
 				type: 'array',
-				path: 'contact.phone',
+				path: 'contact.phone'
 			},
 			{
 				key: 'contact.email.primary',
@@ -168,9 +177,8 @@ export class ExampleEditRowBasicComponent implements OnInit {
 				title: 'Attachment',
 				type: 'file',
 				value: (item, value) => isUndef(value) ? item.attachment : item.attachment = value,
-				label: (item, label) => isUndef(label) ? item.attachmentLabel || null : item.attachmentLabel = label,
+				label: (item, label) => isUndef(label) ? item.attachmentLabel || null : item.attachmentLabel = label
 			}
 		];
-
 	}
 }

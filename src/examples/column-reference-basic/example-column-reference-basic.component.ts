@@ -1,12 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Grid, EditorOptions, Command } from 'ng2-qgrid';
+
+const EXAMPLE_TAGS = [
+	'column-reference-basic',
+	'Cell value is a reference to another value'
+];
 
 @Component({
 	selector: 'example-column-reference-basic',
 	templateUrl: 'example-column-reference-basic.component.html',
-	styleUrls: ['example-column-reference-basic.component.scss']
+	styleUrls: ['example-column-reference-basic.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExampleColumnReferenceBasicComponent {
+	static tags = EXAMPLE_TAGS;
+	title = EXAMPLE_TAGS[1];
+
 	rows = [
 		{
 			'notEditable': ['Lorem', 'ipsum', 'dolor', 'sit', 'amet'],
@@ -35,14 +44,11 @@ export class ExampleColumnReferenceBasicComponent {
 					]
 				})
 				.selection({
-					key: {
-						row: x => x.value,
-						column: x => x.key
-					}
+					rowKey: x => x.value,
 				})
 				.visibility({
 					toolbar: {
-						top: false,
+						top: true,
 						bottom: false,
 						right: false,
 						left: false
@@ -81,10 +87,7 @@ export class ExampleColumnReferenceBasicComponent {
 				.selection({
 					unit: 'row',
 					mode: 'multiple',
-					key: {
-						row: x => x.value,
-						column: x => x.key
-					}
+					rowKey: x => x.value,
 				});
 
 			return model;
@@ -118,14 +121,11 @@ export class ExampleColumnReferenceBasicComponent {
 				.selection({
 					unit: 'row',
 					mode: 'single',
-					key: {
-						row: x => x.value,
-						column: x => x.key
-					}
+					rowKey: x => x.value,
 				});
 
 			return model;
-		},
+		}
 	};
 
 	complexValuesOptions: EditorOptions = {
@@ -145,10 +145,7 @@ export class ExampleColumnReferenceBasicComponent {
 				.selection({
 					unit: 'row',
 					mode: 'multiple',
-					key: {
-						row: x => x.value,
-						column: x => x.key
-					}
+					rowKey: x => x.value,
 				});
 
 			return model;
@@ -158,6 +155,5 @@ export class ExampleColumnReferenceBasicComponent {
 	complexValuesLabel = row => row.complexValues.map(x => x.value).join(', ');
 	convert = rows => rows.map(value => ({ value }));
 
-	constructor(private qgrid: Grid) {
-	}
+	constructor(private qgrid: Grid) { }
 }

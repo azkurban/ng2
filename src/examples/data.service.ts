@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 export class Human {
 	id: number;
@@ -9,6 +10,12 @@ export class Human {
 	comment: string;
 	likes: string[];
 	gender: 'male' | 'female';
+	birthday: string;
+	memberSince: string;
+	name: {
+		first: string,
+		last: string
+	};
 }
 
 export class Atom {
@@ -72,13 +79,14 @@ export class DataService {
 	}
 
 	getAtomPresets(id, user): Observable<any> {
-		const commonPresets = this.http.get('assets/presets/atoms.json');
+		const commonPresets = this.http.get<any[]>('assets/presets/atoms.json');
 		const items = JSON.parse(localStorage.getItem(id));
 		if (items && items.hasOwnProperty(user)) {
 			return combineLatest(
 				commonPresets,
-				of(items[user]),
-				(...arrays) => arrays.reduce((acc, array) => [...acc, ...array], [])
+				of(items[user] as any[])
+			).pipe(
+				map((...lists) => lists.reduce((memo, list) => memo.concat(list), []))
 			);
 		}
 		return commonPresets;

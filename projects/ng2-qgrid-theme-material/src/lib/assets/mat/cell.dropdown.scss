@@ -1,0 +1,7 @@
+td.q-grid-edit {
+    &.q-grid-dropdown {
+        .mat-select-trigger {
+            visibility: hidden;
+        }
+    }
+}

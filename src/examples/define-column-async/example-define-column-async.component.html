@@ -1,9 +1,9 @@
-<q-grid caption="Define Column Async"
+<q-grid [caption]="title"
         [model]="gridModel">
 	<q-grid-columns>
 		<q-grid-column key="number"
 		               title="#"
-		               width="60"
+		               [width]="60"
 		               type="id">
 		</q-grid-column>
 		<q-grid-column key="symbol+name"

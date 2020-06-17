@@ -1,42 +1,32 @@
 {
-  "compileOnSave": false,
+  "extends": "./tsconfig.lib.json",
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": true,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "target": "es5",
-    "typeRoots": [
-      "node_modules/@types",
-      "src/core/types"
-    ],
-    "baseUrl": "./src",
     "paths": {
-      "ng2-qgrid/core/*": [
-        "core/*"
-      ],
-      "ng2-qgrid/plugin/*": [
-        "plugin/*"
-      ],
       "ng2-qgrid/theme/material": [
-        "theme/material/theme.module"
+        "./projects/ng2-qgrid-theme-material/src/public-api.ts"
       ],
       "ng2-qgrid/theme/basic": [
-        "theme/basic/theme.module"
+        "./projects/ng2-qgrid-theme-basic/src/public-api.ts"
       ],
       "ng2-qgrid": [
-        "lib/public-api.ts"
+        "./projects/ng2-qgrid/src/public-api.ts"
+      ],
+      "@qgrid/core/*": [
+        "./projects/qgrid-core/*"
+      ],
+      "@qgrid/plugins/*": [
+        "./projects/qgrid-plugins/*"
+      ],
+      "@qgrid/ngx": [
+        "./projects/ngx-qgrid/src/public-api.ts"
+      ],
+      "@qgrid/ngx-plugins": [
+        "./projects/ngx-qgrid-plugins/src/public-api.ts"
       ]
-    },
-    "lib": [
-      "es2017",
-      "dom"
-    ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
+    "enableIvy": true
   }
 }
