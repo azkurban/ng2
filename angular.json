@@ -334,5 +334,8 @@
       }
     }
   },
-  "defaultProject": "ng2-qgrid-app"
+  "defaultProject": "ng2-qgrid-app",
+  "cli": {
+    "analytics": "e2689ee3-1459-4919-a11b-137ee2b4cbc9"
+  }
 }
