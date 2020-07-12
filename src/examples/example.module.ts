@@ -62,6 +62,7 @@ import { ExampleDragRowBasicComponent } from './drag-row-basic/example-drag-row-
 import { ExampleDragRowNodeComponent } from './drag-row-node/example-drag-row-node.component';
 import { ExampleDynamicColumnModelComponent } from './dynamic-column-model/example-dynamic-column-model.component';
 import { ExampleEditCellBasicComponent } from './edit-cell-basic/example-edit-cell-basic.component';
+import { ExampleEditCellAdvancedComponent } from './edit-cell-advanced/example-edit-cell-advanced.component';
 import { ExampleEditCellBatchComponent } from './edit-cell-batch/example-edit-cell-batch.component';
 import { ExampleEditRowBasicComponent } from './edit-row-basic/example-edit-row-basic.component';
 import { ExampleEditRowCustomComponent } from './edit-row-custom/example-edit-row-custom.component';
@@ -217,6 +218,7 @@ export const EXAMPLES: any[] = [
 	ExampleDragRowNodeComponent,
 	ExampleDynamicColumnModelComponent,
 	ExampleEditCellBasicComponent,
+	ExampleEditCellAdvancedComponent,
 	ExampleEditCellBatchComponent,
 	ExampleEditRowBasicComponent,
 	ExampleEditRowCustomComponent,
