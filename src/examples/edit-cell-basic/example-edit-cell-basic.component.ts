@@ -1,6 +1,7 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, AfterViewInit, ViewChild } from '@angular/core';
 import { DataService, Human } from '../data.service';
 import { Observable } from 'rxjs';
+import { GridComponent } from '@qgrid/ngx';
 
 const EXAMPLE_TAGS = [
 	'edit-cell-basic',
@@ -14,7 +15,9 @@ const EXAMPLE_TAGS = [
 	providers: [DataService],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ExampleEditCellBasicComponent {
+export class ExampleEditCellBasicComponent implements AfterViewInit {
+	@ViewChild(GridComponent) myGrid: GridComponent;
+
 	static tags = EXAMPLE_TAGS;
 	title = EXAMPLE_TAGS[1];
 
@@ -22,5 +25,13 @@ export class ExampleEditCellBasicComponent {
 
 	constructor(dataService: DataService) {
 		this.rows = dataService.getPeople();
+	}
+
+	ngAfterViewInit(): void {
+		const { model } = this.myGrid;
+
+		model.edit({
+			mode: 'cell'
+		});
 	}
 }
