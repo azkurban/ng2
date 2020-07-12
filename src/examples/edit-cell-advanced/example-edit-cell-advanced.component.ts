@@ -1,22 +1,22 @@
-import { Component, ChangeDetectionStrategy, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild, AfterViewInit } from '@angular/core';
 import { DataService, Human } from '../data.service';
 import { Observable } from 'rxjs';
 import { GridComponent } from '@qgrid/ngx';
 import { Command } from 'protractor';
 
 const EXAMPLE_TAGS = [
-	'edit-cell-basic',
-	'Cell values can be edited'
+	'edit-cell-advanced',
+	'Edit mode controled dynamically by code.'
 ];
 
 @Component({
-	selector: 'example-edit-cell-basic',
-	templateUrl: 'example-edit-cell-basic.component.html',
-	styleUrls: ['example-edit-cell-basic.component.scss'],
+	selector: 'example-edit-cell-advanced',
+	templateUrl: 'example-edit-cell-advanced.component.html',
+	styleUrls: ['example-edit-cell-advanced.component.scss'],
 	providers: [DataService],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ExampleEditCellBasicComponent implements AfterViewInit {
+export class ExampleEditCellAdvancedComponent implements AfterViewInit {
 	@ViewChild(GridComponent) myGrid: GridComponent;
 
 	static tags = EXAMPLE_TAGS;
@@ -32,13 +32,7 @@ export class ExampleEditCellBasicComponent implements AfterViewInit {
 		const { model } = this.myGrid;
 
 		model.edit({
-			mode: 'cell',
-			enter: new Command({
-			   canExecute: e => e.column.type === 'number'
-			}),
-			commit: new Command({
-			   execute: e => console.log(e.newValue)
-			})
-		 });
-		  }
+			mode: 'cell'
+		});
+	}
 }

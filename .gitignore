@@ -44,3 +44,4 @@ testem.log
 Thumbs.db
 results.json
 .git.7z
+src/examples/edit-cell-advanced.7z
