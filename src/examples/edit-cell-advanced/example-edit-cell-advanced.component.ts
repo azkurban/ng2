@@ -32,13 +32,7 @@ export class ExampleEditCellAdvancedComponent implements AfterViewInit {
 		const { model } = this.myGrid;
 
 		model.edit({
-			mode: 'cell',
-			enter: new Command({
-				canExecute: e => e.column.type === 'number'
-			}),
-			commit: new Command({
-				execute: e => console.log(e.newValue)
-			})
+			mode: 'cell'
 		});
 	}
 }
