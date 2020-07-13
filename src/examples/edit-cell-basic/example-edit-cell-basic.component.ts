@@ -1,8 +1,7 @@
 import { Component, ChangeDetectionStrategy, AfterViewInit, ViewChild } from '@angular/core';
 import { DataService, Human } from '../data.service';
 import { Observable } from 'rxjs';
-import { GridComponent } from '@qgrid/ngx';
-import { Command } from 'protractor';
+import { GridComponent, Command } from 'ng2-qgrid';
 
 const EXAMPLE_TAGS = [
 	'edit-cell-basic',
@@ -34,11 +33,11 @@ export class ExampleEditCellBasicComponent implements AfterViewInit {
 		model.edit({
 			mode: 'cell',
 			enter: new Command({
-			   canExecute: e => e.column.type === 'number'
+				canExecute: e => e.column.type === 'number'
 			}),
 			commit: new Command({
-			   execute: e => console.log(e.newValue)
+				execute: e => console.log(e.newValue)
 			})
-		 });
-		  }
+		});
+	}
 }
